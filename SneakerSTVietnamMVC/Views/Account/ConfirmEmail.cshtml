@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmEmail";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+
+<section id="confirmemail">
+    <div class="container">
+        <h1>Confirm Email</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">Confirm Email</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Confirm Email</h1>
+                @if (ViewBag.Success != null)
+                {
+                    <h3 class="text-success">@ViewBag.Success</h3>
+                }
+                @if (ViewBag.Error != null)
+                {
+                    <h3 class="text-danger">@ViewBag.Error</h3>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<section id="foward">
+    <div class="container">
+        <div class="text-center">
+            @Html.ActionLink("RETURN TO HOME PAGE", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+        </div>
+    </div>
+</section>

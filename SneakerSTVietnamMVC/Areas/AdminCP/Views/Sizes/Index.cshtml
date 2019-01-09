@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.Size>
+
+@{
+    ViewBag.Title = "Size";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Size List</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (TempData["AddSuccess"] != null)
+                            {
+                                @Html.Raw(TempData["AddSuccess"])
+                            }
+                            <div class="form-group">@Html.ActionLink("CREATE SIZE", "Create", null, new { @class = "btn btn-success btn-md" })</div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SizeName)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SizeName)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.SizeID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.SizeID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.Slider>
+<!-- BEGIN SLIDER AREA-->
+<div class="slider_area">
+
+    <!-- BEGIN SLIDER-->
+    <div id="slides">
+        <ul class="slides-container">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="slider_overlay"></div>
+                    <img src="../@Html.DisplayFor(m => item.SliderImage)" alt="img">
+                    <div class="slider_caption">
+                        <h2>@Html.DisplayFor(m => item.SlideName)</h2>
+                        <p>@Html.DisplayFor(m => item.Slide_Description)</p>
+                        <a href="@Html.DisplayFor(m => item.SlideLink)" class="slider_btn">@Html.DisplayFor(m => item.SlideButtonName)</a>
+                    </div>
+                </li>
+            }
+            
+        </ul>
+        <!-- BEGAIN SLIDER NAVIGATION -->
+        <nav class="slides-navigation">
+            <!-- PREV IN THE SLIDE -->
+            <a class="prev" href="/item1">
+                <span class="icon-wrap"></span>
+                <h3><strong>Prev</strong></h3>
+            </a>
+            <!-- NEXT IN THE SLIDE -->
+            <a class="next" href="/item3">
+                <span class="icon-wrap"></span>
+                <h3><strong>Next</strong></h3>
+            </a>
+        </nav>
+    </div>
+    <!-- END SLIDER-->
+</div>
+<!-- END SLIDER AREA -->

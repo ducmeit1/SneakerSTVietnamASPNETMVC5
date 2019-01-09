@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.Business>
+
+@{
+    ViewBag.Title = "Business List";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Business List</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (TempData["AddSuccess"] != null)
+                            {
+                                @Html.Raw(TempData["AddSuccess"])
+                            }
+                            <div class="form-group">@Html.ActionLink("CREATE BUSINESS", "Create", null, new { @class = "btn btn-success btn-md" })</div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        Business Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Area
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <b>@Html.DisplayFor(modelItem => item.BusinessName)</b>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BusinessDescription)
+                                        </td>
+                                        <td style="color: #ff0000">
+                                            @Html.DisplayFor(modelItem => item.AreaName)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.BusinessID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.BusinessID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.BusinessID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

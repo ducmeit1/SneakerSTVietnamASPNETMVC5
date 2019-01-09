@@ -1,0 +1,46 @@
+﻿@model SneakerSTVietnamMVC.Models.DataView.InvoiceDataView
+@{
+    ViewBag.Title = "View Invoice";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+<section id="login">
+    <div class="container">
+        <h1>Login</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">View Invoice</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Please enter order number to find your order detail
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        @using (Html.BeginForm("Index", "ViewInvoice", FormMethod.Post, new { @role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h3>Returning customer</h3>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.InvoiceID)
+                                @Html.TextBoxFor(m => m.InvoiceID, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceID, "", new { @class = "text-danger" })
+                            </div>
+                            <input type="submit" value="TRACK" class="btn btn-lg btn-success">
+                            <br /><br />
+                            <p class="text-danger">@TempData["Message"]</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

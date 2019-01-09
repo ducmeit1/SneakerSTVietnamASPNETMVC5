@@ -1,0 +1,65 @@
+﻿@using SneakerSTVietnamMVC.Models.DataView;
+@model ViewLoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+
+<section id="login">
+    <div class="container">
+        <h1>Login</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">Login</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Please enter username and password to login.
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h3>Returning customer</h3>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <input type="submit" value="LOGIN" class="btn btn-lg btn-success">
+                            <br /><br />
+                            <p class="text-info">If you didn't confirm your email, please click @Html.ActionLink("here", "SendConfirmEmail") before login.</p>
+                            <p class="text-danger">@ViewBag.Message</p>
+                            <p class="text-warning">@Html.Raw(ViewBag.Confirm)</p>
+                        }
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <h3>NEW TO SneakerST?</h3>
+                        <p>Create an account to check out faster in the future and receive emails about your order, new products, events, and special offers</p>
+                        @Html.ActionLink("CREATE AN ACCOUNT", "Register", null, new { @class = "btn btn-primary btn-lg" })
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <h3>TRACKING ORDER NUMBER</h3>
+                        <p>If you have been ordered at SneakerST then you can track it</p>
+                        <a href="@Url.Action("Index", "ViewInvoice")" class="btn btn-primary btn-lg">TRACKING ORDER NUMBER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

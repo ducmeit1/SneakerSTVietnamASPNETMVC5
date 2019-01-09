@@ -1,0 +1,177 @@
+﻿@model SneakerSTVietnamMVC.Models.Invoice
+@using SneakerSTVietnamMVC.Models.DataView
+
+    @{
+        ViewBag.Title = "Delete";
+        Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+    }
+
+    <div class="main">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="panel panel-headline">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Detail Invoice: @Html.DisplayFor(model => model.InvoiceID)</h1>
+                        <p class="panel-subtitle"></p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <hr />
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        First Name:
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.FirstName)
+                                    </dd>
+
+                                    <dt>
+                                        Last Name:
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.LastName)
+                                    </dd>
+
+                                    <dt>
+                                        Billing Email:
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Email)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Address)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.City)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.City)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Postcode)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Postcode)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.State)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.State)
+                                    </dd>
+
+                                    <dt>
+                                        Phone Number:
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.PhoneNumber)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Country)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Country)
+                                    </dd>
+
+                                    <dt>
+                                        Payment Method
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.PaymentMethod)
+                                    </dd>
+
+                                    <dt>
+                                        Delivery Method
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.DeliveryMethod)
+                                    </dd>
+
+                                    <dt>
+                                        Status:
+                                    </dt>
+
+                                    <dd>
+                                        <b>@Html.DisplayFor(model => model.InvoiceStatu.InvoiceStatusName)</b>
+                                    </dd>
+
+                                    <dt>
+                                        User Email:
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.User.Email)
+                                    </dd>
+
+                                </dl>
+                            </div>
+                            <div class="col-lg-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Gender</th>
+                                            <th>Size</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (BasketDataView b in ViewBag.Basket)
+                                        {
+                                            <tr>
+                                                <td><img src="../../../@Html.DisplayFor(m => b.Thumb)" class="img-responsive" style="max-height: 100px" /></td>
+                                                <td><a href="@Url.Action("Details", "Products", new { id = b.ProductID})" title="View Detail">@Html.DisplayFor(m => b.ProductName)</a></td>
+                                                <td>@Html.DisplayFor(m => b.CategoryName)</td>
+                                                <td>@Html.DisplayFor(m => b.Gender)</td>
+                                                <td>@Html.DisplayFor(m => b.SizeName)</td>
+                                                <td>@Html.DisplayFor(m => b.Quantity)</td>
+                                                <td>@Html.DisplayFor(m => b.SellPrice) $USD</td>
+                                                <td>@Html.DisplayFor(m => b.TotalAmount) $USD</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <h3 class="text-left">Total: @ViewBag.TotalAmount $USD</h3>
+                                </div>
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="DELETE" class="btn btn-default" onclick="return confirm('Do you wanna delete this invoice?');" />
+                                        @Html.ActionLink("Back to List", "Index")
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,80 @@
+﻿@model SneakerSTVietnamMVC.Models.Slider
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Detail Slider: @Html.DisplayFor(model => model.SlideID)</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <hr />
+
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    Slide ID:
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.SlideID)
+                                </dd>
+                                <dt>
+                                    Slide Name:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SlideName)
+                                </dd>
+
+                                <dt>
+                                    Description:
+                                </dt>
+
+                                <dd>
+                                    <p class="text-justify">@Html.DisplayFor(model => model.Slide_Description)</p>
+                                </dd>
+
+                                <dt>
+                                    Link:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SlideLink)
+                                </dd>
+
+                                <dt>
+                                    Button Name:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SlideButtonName)
+                                </dd>
+
+                                <dt>
+                                    Image:
+                                </dt>
+
+                                <dd>
+                                    <img src="../../../@Html.DisplayFor(model => model.SliderImage)" class="img-responsive" />
+                                </dd>
+
+                            </dl>
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.SlideID }) |
+                                @Html.ActionLink("Back to List", "Index")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

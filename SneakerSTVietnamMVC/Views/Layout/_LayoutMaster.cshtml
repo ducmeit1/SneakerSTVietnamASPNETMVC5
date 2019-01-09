@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - SneakerST Vietnam</title>
+    @Styles.Render("~/Content/bootstrap/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css/superslide")
+    <!-- Google fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    <!-- END SCROLL TOP BUTTON -->
+    @Html.Partial("_UserBarPartial")
+    <header id="header">
+        <!-- BEGIN MENU -->
+        <div class="menu_area">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-shink" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- TEXT BASED LOGO -->
+                        <a class="navbar-brand" href="#">SNEAKER<span>ST</span></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul id="top-menu" class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">NEW ARRIVALS <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("NewArrivals", "Products")">New Arrivals</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">SNEAKERS</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">BRAND<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Search", "Products", new { keyword = "adidas"})">Adidas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">BLOG</a></li>
+                            <li><a href="#">CUSTOMER SERVICE</a></li>
+                            <li><a href="#" id="searchButton">SEARCH <span class="glyphicon glyphicon-search"></span></a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </nav>
+        </div>
+        <!-- END MENU -->
+        @Html.Partial("_SearchBoxPartial")
+    </header>
+    <!--=========== End HEADER SECTION ================-->
+    @RenderBody()
+    <!--============== Footer ==============-->
+    <footer>
+        <div id="footer" class="parallax text-white">
+            <div class="cover"></div>
+            <div class="container">
+                <div class="row footerlinks">
+                    <div class="col-sm-4 col-md-2">
+                        <p>CALL US</p>
+                        <ul>
+                            <li>+84 1666 210 190</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <p>FOLLOW US</p>
+                        <ul>
+                            <li><a href="http://twitter.com" target="_blank">Follow on Twitter</a></li>
+                            <li><a href="http://facebook.com/reviewdao" target="_blank">Like us on Facebook</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <p>COMPANY</p>
+                        <ul>
+                            <li><a href="#">About US</a></li>
+                            <li><a href="#">Customer Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <p>EMAIL US</p>
+                        <ul>
+                            <li><a href="mail:ducmeit2015@gmail.com" target="_blank">Support Email</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-4 col-md-2">
+                        <p>LEGAL TERMS</p>
+                        <ul>
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Refunds Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <p>Live Chat</p>
+                        <ul>
+                            <li><a href="#" class="btn btn-success">CHAT WITH US </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row copyright">
+                    <div class="pull-right">
+                        <h1>SNEAKER<span>ST</span></h1>
+                    </div>
+                    <p>
+                        Copyright &copy; 2017. SNEAKERST Inc<br />
+                        Developed by DucMeIT and partners.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--============== END Footer ==============-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/superslide")
+    @Scripts.Render("~/bundles/extendscript")
+</body>
+</html>

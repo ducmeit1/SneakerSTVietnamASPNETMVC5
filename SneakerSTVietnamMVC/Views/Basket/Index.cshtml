@@ -1,0 +1,176 @@
+﻿@using SneakerSTVietnamMVC.Models.DataView
+@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+
+<section id="basket">
+    <div class="container">
+        <h1>Your Basket</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">Basket</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (Session["basket"] == null)
+                {
+                    <h1 class="text-center">Your basket is empty!</h1>
+                }
+                else
+                {
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Gender</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (BasketDataView b in ViewBag.Basket)
+                            {
+                                <tr>
+                                    <td><img src="../../@Html.DisplayFor(m => b.Thumb)" class="img-responsive" style="max-height: 100px" /></td>
+                                    <td><a href="@Url.Action("ViewDetail", "Products", new { id = b.ProductID})" title="View Detail">@Html.DisplayFor(m => b.ProductName)</a></td>
+                                    <td>@Html.DisplayFor(m => b.CategoryName)</td>
+                                    <td>@Html.DisplayFor(m => b.Gender)</td>
+                                    <td>@Html.DisplayFor(m => b.SizeName)</td>
+                                    <td><i class="fa fa-plus" title="Add More Quantity" onclick="AddToCart(@Html.DisplayFor(m=>b.ProductID), @Html.DisplayFor(m=>b.SizeID))" style="cursor: pointer"></i> <span id="@Html.DisplayFor(m=>b.ProductID)@Html.DisplayFor(m=>b.SizeID)">@Html.DisplayFor(m => b.Quantity)</span> <i class="fa fa-minus" title="Remove Quantity" onclick="RemoveFromCart(@Html.DisplayFor(m=>b.ProductID), @Html.DisplayFor(m=>b.SizeID))" style="cursor: pointer"></i></td>
+                                    <td>@Html.DisplayFor(m => b.SellPrice) $USD</td>
+                                    <td><span id="p @Html.DisplayFor(m=>b.ProductID)@Html.DisplayFor(m=>b.SizeID)">@Html.DisplayFor(m => b.TotalAmount)</span> $USD</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div>
+                        <h3 class="text-left">Total: <span id="totalAmount">@ViewBag.TotalAmount</span> $USD</h3>
+                        <a href="@Url.Action("Index", "Checkout")" class="btn btn-primary btn-lg"><i class="fa fa-shopping-cart fa-x2"></i> CHECKOUT</a>
+                    </div>
+                }
+            </div>
+            <div id="new-arrivals" style="padding: 10px 0px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <h3>RECENT SNEAKERS MAY YOU LIKE</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (ProductModelRepresentView item in ViewBag.RandomProduct)
+                        {
+                            <div class="col-lg-4 col-sm-6 new-arrivals-item">
+                                <a href="@Url.Action("ViewDetail", "Products", new { id = item.ProductID })" class="new-arrivals-link">
+                                    @if (item.IsNew)
+                                    {<div class="type-tag">NEW</div>}
+                                    <div class="price-tag">@Html.DisplayFor(m => item.SellPrice) $USD</div>
+                                    <img src="../../@Html.DisplayFor(m => item.ImageLink)" class="img-responsive" alt="" />
+                                    <p>@Html.DisplayFor(m => item.ProductName)</p>
+                                </a>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <a href="@Url.Action("NewArrivals", "Products")" class="btn btn-lg btn-outline" style="position: relative; top: 30px">
+                                    VIEW MORE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="alert"></div>
+<script>
+    function AddToCart(id, size) {
+        var xhttp = new XMLHttpRequest();
+        var chuoi = id + "" + size;
+        var quantity = parseInt(document.getElementById(chuoi).innerHTML);
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != "") {
+                    document.getElementById("alert").outerHTML = this.responseText;
+                    if (this.responseText.includes("success")) {
+                        document.getElementById(chuoi).innerHTML = quantity + 1;
+                        GetNewAmount(id, size);
+                        GetTotalAmount();
+                        }
+                    $("#alert").delay(2000).slideUp(200, function () {
+                        $("#alert").outerHTML = "<div id='alert'></div>";
+                    });
+                } else {
+                    location.reload();
+                }
+            }
+        }
+
+        xhttp.open("POST", "../../Basket/AddToBasket?id=" + id + "&size=" + size, true);
+        xhttp.send();
+    }
+
+    function RemoveFromCart(id, size) {
+        var xhttp = new XMLHttpRequest();
+        var chuoi = id + "" + size;
+        var quantity = parseInt(document.getElementById(chuoi).innerHTML);
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != "") {
+                    document.getElementById("alert").outerHTML = this.responseText;
+                    if (this.responseText.includes("success")) {
+                        document.getElementById(chuoi).innerHTML = quantity - 1;
+                        GetNewAmount(id, size);
+                        GetTotalAmount();
+                    }
+                    $("#alert").delay(2000).slideUp(200, function () {
+                        $("#alert").outerHTML = "<div id='alert'></div>";
+                    });
+                } else {
+                    location.reload();
+                }
+            }
+        }
+
+        xhttp.open("POST", "../../Basket/RemoveFromCart?id=" + id + "&size=" + size, true);
+        xhttp.send();
+    }
+
+    function GetNewAmount(id, size) {
+        var xhttp = new XMLHttpRequest();
+        var chuoi = "p" + " " + id + "" + size;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != "") {
+                    document.getElementById(chuoi).innerHTML = this.responseText;
+                }
+            }
+        }
+
+        xhttp.open("POST", "../../Basket/GetNewAmount?id=" + id + "&size=" + size, true);
+        xhttp.send();
+    }
+
+    function GetTotalAmount() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != "") {
+                    document.getElementById("totalAmount").innerHTML = this.responseText;
+                }
+            }
+        }
+
+        xhttp.open("POST", "../../Basket/GetTotalAmount", true);
+        xhttp.send();
+    }
+</script>

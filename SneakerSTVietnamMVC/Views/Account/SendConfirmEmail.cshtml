@@ -1,0 +1,47 @@
+﻿@using SneakerSTVietnamMVC.Models.DataView;
+@model ViewEmailConfirm
+@{
+    ViewBag.Title = "Send Confirm Email";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+
+<section id="confirmemail">
+    <div class="container">
+        <h1>Send Email Confirm</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">Send Confirm Email</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Please enter email below to send confirm email.
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+
+                        @using (Html.BeginForm("SendConfirmEmail", "Account", FormMethod.Post, new { @role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h3>Send Email</h3>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <input type="submit" value="SEND" class="btn btn-lg btn-success">
+                            <p class="text-danger">@ViewBag.Confirmed @ViewBag.NotFound</p>
+                            <p class="text-success">@ViewBag.Success</p>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

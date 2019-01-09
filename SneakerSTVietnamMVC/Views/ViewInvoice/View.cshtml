@@ -1,0 +1,134 @@
+﻿@model SneakerSTVietnamMVC.Models.Invoice
+@using SneakerSTVietnamMVC.Models.DataView
+@{
+    ViewBag.Title = "View Invoice";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+<section id="login">
+    <div class="container">
+        <h1>View Invoice</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item">
+                @Html.ActionLink("View Invoice", "Index", "ViewInvoice")
+            </li>
+            <li class="breadcrumb-item active">View</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.Raw(TempData["Message"])
+                <h1>Detail Invoice: @Html.DisplayFor(m => Model.InvoiceID)</h1>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Invoice Status
+                    </dt>
+                    <dd>
+                        <b>@Html.DisplayFor(m => Model.InvoiceStatu.InvoiceStatusName)</b>
+                    </dd>
+                    <dt>
+                        Email
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.Email)
+                    </dd>
+                    <dt>
+                        First Name:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.FirstName)
+                    </dd>
+                    <dt>
+                        Last Name:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.LastName)
+                    </dd>
+                    <dt>
+                        Address
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.Address)
+                    </dd>
+                    <dt>
+                        City
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.City)
+                    </dd>
+                    <dt>
+                        Postcode
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.Postcode)
+                    </dd>
+                    <dt>
+                        State
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.State)
+                    </dd>
+                    <dt>
+                        Country
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.Country)
+                    </dd>
+                    <dt>
+                        Delivery Method
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.DeliveryMethod)
+                    </dd>
+                    <dt>
+                        Payment Method
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(m => Model.PaymentMethod)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Gender</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (BasketDataView b in ViewBag.Basket)
+                        {
+                            <tr>
+                                <td><img src="../../@Html.DisplayFor(m => b.Thumb)" class="img-responsive" style="max-height: 100px" /></td>
+                                <td><a href="@Url.Action("ViewDetail", "Products", new { id = b.ProductID})" title="View Detail">@Html.DisplayFor(m => b.ProductName)</a></td>
+                                <td>@Html.DisplayFor(m => b.CategoryName)</td>
+                                <td>@Html.DisplayFor(m => b.Gender)</td>
+                                <td>@Html.DisplayFor(m => b.SizeName)</td>
+                                <td>@Html.DisplayFor(m => b.Quantity)</td>
+                                <td>@Html.DisplayFor(m => b.SellPrice) $USD</td>
+                                <td>@Html.DisplayFor(m => b.TotalAmount) $USD</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    <h3 class="text-left">Total: @ViewBag.TotalAmount $USD</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

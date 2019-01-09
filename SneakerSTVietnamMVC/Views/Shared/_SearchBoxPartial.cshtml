@@ -1,0 +1,10 @@
+﻿<div id="searchBox" class="off">
+    <div id="search" class="open">
+        <button data-widget="remove" id="removeClass" class="close" type="button">×</button>
+        @using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @role = "form", @autocomplete="off"}))
+        {
+        <input type="text" placeholder="Type search keywords here" name="keyword" value="" id="keyword">
+        <button class="btn btn-lg btn-outline" type="submit">Search <span class="glyphicon glyphicon-search"></span></button>
+        }
+    </div>
+</div>

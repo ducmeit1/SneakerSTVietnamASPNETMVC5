@@ -1,0 +1,109 @@
+﻿@model SneakerSTVietnamMVC.Models.Product
+
+@{
+    ViewBag.Title = "Details Product";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Detail Product: @Html.DisplayFor(model => model.ProductName)</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    ID:
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ProductID)
+                                </dd>
+                                <dt>
+                                    Name:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.ProductName)
+                                </dd>
+
+                                <dt>
+                                    Description:
+                                </dt>
+
+                                <dd>
+                                    <p class="text-justify">@Html.DisplayFor(model => model.Description)</p>
+                                </dd>
+
+                                <dt>
+                                    Detail:
+                                </dt>
+
+                                <dd>
+                                    <p class="text-justify">@Html.DisplayFor(model => model.Detail)</p>
+                                </dd>
+                                <dt>
+                                    Gender:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Gender)
+                                </dd>
+
+                                <dt>
+                                    Sell Price:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.SellPrice)
+                                </dd>
+
+                                <dt>
+                                    In Stock:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.InStock)
+                                </dd>
+
+                                <dt>
+                                    Display:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.IsDisplay)
+                                </dd>
+
+                                <dt>
+                                    Published Date:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.PublishDate)
+                                </dd>
+
+                                <dt>
+                                    Category Name:
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Category.CategoryName)
+                                </dd>
+
+                            </dl>
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+                                @Html.ActionLink("Back to List", "Index")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

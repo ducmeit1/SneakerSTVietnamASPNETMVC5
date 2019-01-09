@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.Stock>
+
+@{
+    ViewBag.Title = "Stock";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Stock List</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (TempData["AddSuccess"] != null)
+                            {
+                                @Html.Raw(TempData["AddSuccess"])
+                            }
+                            <div class="form-group">@Html.ActionLink("IMPORT STOCK", "Create", null, new { @class = "btn btn-success btn-md" })</div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Product Name
+                                    </th>
+                                    <th>
+                                        Size Name
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (item.Quantity == 0)
+                                            {
+                                                <b><font color="red">@Html.DisplayFor(modelItem => item.Quantity)</font></b>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Size.SizeName)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { productid = item.ProductID, sizeid = item.SizeID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { productid = item.ProductID, sizeid = item.SizeID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

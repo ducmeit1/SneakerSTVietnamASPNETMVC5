@@ -1,0 +1,37 @@
+﻿<!-- LEFT SIDEBAR -->
+<div id="sidebar-nav" class="sidebar">
+    <div class="sidebar-scroll">
+        <nav>
+            <ul class="nav">
+                <li><a href="@Url.Action("Index", "Home")" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="@Url.Action("Index", "Invoices")" class=""><i class="lnr lnr-diamond"></i> <span>Invoices</span></a></li>
+                <li><a href="@Url.Action("Index", "Sliders")" class=""><i class="lnr lnr-screen"></i> <span>Sliders</span></a></li>
+                <li><a href="@Url.Action("Index", "Users")" class=""><i class="lnr lnr-users"></i> <span>Users</span></a></li>
+                <li><a href="@Url.Action("Index", "Categories")" class=""><i class="lnr lnr-apartment"></i> <span>Categories</span></a></li>
+                <li>
+                    <a href="#subPageBusinessRoles" data-toggle="collapse" class="collapsed"><i class="lnr lnr-rocket"></i> <span>Business Roles</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPageBusinessRoles" class="collapse ">
+                        <ul class="nav">
+                            <li><a href="@Url.Action("Index", "Businesses")" class=""><i class="lnr lnr-magic-wand"></i> <span>Businesses</span></a></li>
+                            <li><a href="@Url.Action("Index", "Role")" class=""><i class="lnr lnr-construction"></i> <span>Roles</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#subPageProduct" data-toggle="collapse" class="collapsed"><i class="lnr lnr-eye"></i> <span>Products</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                    <div id="subPageProduct" class="collapse ">
+                        <ul class="nav">
+                            <li><a href="@Url.Action("Index", "Products")" class=""><i class="lnr lnr-file-empty"></i> <span>Products Details</span></a></li>
+                            <li><a href="@Url.Action("Index", "ImageProducts")" class=""><i class="lnr lnr-picture"></i> <span>Product Images</span></a></li>
+                            <li><a href="@Url.Action("Index", "Sizes")" class=""><i class="lnr lnr-text-size"></i> <span>Product Sizes</span></a></li>
+                            <li><a href="@Url.Action("Index", "Stocks")" class=""><i class="lnr lnr-store"></i> <span>Product Stocks</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="../../" class=""><i class="lnr lnr-arrow-left"></i> <span>Home</span></a></li>
+                <li><a href="@Url.Action("Logout", "Home")" class=""><i class="lnr lnr-lock"></i> <span>Logout</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- END LEFT SIDEBAR -->

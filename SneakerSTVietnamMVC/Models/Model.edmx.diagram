@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67b22d75e4224a648e87f1c192ed889e" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Role" Width="1.5" PointX="0.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.User" Width="1.5" PointX="3.125" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_UserTbl_RoleTbl" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Business" Width="1.5" PointX="0.5" PointY="1" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.RoleBusiness" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Category" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.ImageProduct" Width="1.5" PointX="2.625" PointY="6.75" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Product" Width="1.5" PointX="4.75" PointY="6.125" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_Product_Category" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_ImageProduct_Product" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Size" Width="1.5" PointX="8.25" PointY="8" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Stock" Width="1.5" PointX="10.25" PointY="5.5" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_Stock_Product" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_Stock_Size" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Slider" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.Invoice" Width="1.5" PointX="10.5" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.InvoiceStatu" Width="1.5" PointX="11.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DB_SNEAKERSTV2Model.ShoppingDetail" Width="1.5" PointX="13.25" PointY="4.25" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_Invoice_InvoiceStatus" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_Invoice_User" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_ShoppingDetail_Invoice" />
+        <AssociationConnector Association="DB_SNEAKERSTV2Model.FK_ShoppingDetail_Product" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

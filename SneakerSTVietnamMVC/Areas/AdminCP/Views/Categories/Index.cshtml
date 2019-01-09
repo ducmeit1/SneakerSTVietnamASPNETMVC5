@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.Category>
+
+@{
+    ViewBag.Title = "Category List";
+    Layout = "~/Areas/AdminCP/Views/Shared/_LayoutAdminCP.cshtml";
+}
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Category List</h1>
+                    <p class="panel-subtitle"></p>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (TempData["AddSuccess"] != null)
+                            {
+                                @Html.Raw(TempData["AddSuccess"])
+                            }
+                            <div class="form-group">@Html.ActionLink("CREATE CATEGORY", "Create", null, new { @class = "btn btn-success btn-md" })</div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Category ID</th>
+                                    <th>Category Name</th>
+                                    <th>Category Logo</th>
+                                    <th>Category Description</th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.CategoryID)</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            <img src="../../@Html.DisplayFor(modelItem => item.CategoryLogo)" class="img-thumbnail" style="max-height: 50px"/>
+                                        </td>
+                                        <td>
+                                            <p class="text-justify">
+                                            @if (@Html.DisplayFor(modelItem => item.CategoryDescription).ToString().Length > 50) {
+                                                @Html.DisplayFor(modelItem => item.CategoryDescription).ToString().Substring(0, 150)
+                                            } else {
+                                                @Html.DisplayFor(modelItem => item.CategoryDescription)
+                                            }...</p>
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

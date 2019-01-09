@@ -1,0 +1,69 @@
+﻿@using SneakerSTVietnamMVC.Models.DataView
+@model ViewLoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+
+<html class="fullscreen-bg">
+<head>
+    <title>@ViewBag.Title - SneakerST Vietnam AdminCP</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--Boostrap-->
+    @Styles.Render("~/Content/bootstrap/css")
+    <!--Linear Icon-->
+    @Styles.Render("~/Content/AdminCP/LinearIcons")
+    <!--Main CSS-->
+    @Styles.Render("~/Content/AdminCP/css")
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+</head>
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle">
+                <div class="auth-box ">
+                    <div class="left">
+                        <div class="content">
+                            <div class="header">
+                                <h1 class="text-center sneakerstbrand">SNEAKER<span>ST</span> <span style="font-size: 24px; color: #000000">LOGIN</span></h1>
+                            </div>
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @role = "form", @class = "form-auth-small" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password)
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                                <input type="submit" value="LOGIN" class="btn btn-lg btn-success btn-block">
+                                <div class="form-group">
+                                    <p class="text-danger">@ViewBag.Message</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="overlay"></div>
+                        <div class="content text">
+                            <h1 class="heading"><b>SNEAKERST VIETNAM ADMIN CONTROL PANEL</b></h1>
+                            <p>wellcome to</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END WRAPPER -->
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SneakerSTVietnamMVC.Models.DataView.ProductModelRepresentView>
+@{
+    ViewBag.Title = "New Arrivals";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+
+<section id="new-arrivals">
+    <div class="container">
+        <h1>New Arrivals</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item active">News Arrivals</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("NewArrivals", "Products", FormMethod.Post, new { @role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <p><b>Order by:</b></p>
+                    <div class="form-group form-inline">
+                    <label>Published Date</label>
+                        @Html.DropDownList("date", null, "Select", htmlAttributes: new { @class = "form-control" })
+                        <label>Price</label>
+                        @Html.DropDownList("price", null, "Select", htmlAttributes: new { @class = "form-control" })
+                        <label>Category</label>
+                        @Html.DropDownList("category", null, "Select", htmlAttributes: new { @class = "form-control" })
+                        <input type="submit" value="Refresh" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-sm-6 new-arrivals-item">
+                    <a href="@Url.Action("ViewDetail", "Products", new { id = item.ProductID })" class="new-arrivals-link">
+                        @if (item.IsNew)
+                        {<div class="type-tag">NEW</div>}
+                            <div class="price-tag">@Html.DisplayFor(m => item.SellPrice) $USD</div>
+                        <img src="../../@Html.DisplayFor(m => item.ImageLink)" class="img-responsive" alt="" />
+                        <p>@Html.DisplayFor(m => item.ProductName)</p>
+                    </a>
+                 </div>
+            }
+        </div>
+    </div>
+</section>

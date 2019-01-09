@@ -1,0 +1,36 @@
+﻿<!--=========== BEGIN HEADER SECTION ================-->
+<div id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5 news">
+                <p class="hidden-sm hidden-xs">FREE DELIVERY & FREE RETURN &nbsp;<a href="#"><sup>SEE DETAILS (*)</sup></a></p>
+            </div>
+            <div class="col-lg-7 col-sm-12 col-xs-12">
+                <div class="social">
+                    <a href="facebook.com" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                    <a href="plus.google.com" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                    <a href="twitter.com" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                    <a href="mailto:ducmeit2015@gmail.com" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                </div>
+                @if (Session["user"] == null)
+                {
+                    <div class="login">
+                        <a href="@Url.Action("Login", "Account")" title="Sign in"><i class='fa fa-sign-in'></i><span class='text-uppercase'>Sign in</span></a>
+                        <a href="@Url.Action("Register", "Account")" title="Sign Up"><i class='fa fa-user'></i><span class='text-uppercase'>Sign Up</span></a>
+                        <a href="@Url.Action("Index", "Basket")" title="Shopping Cart"><i class='fa fa-shopping-cart'></i> <span class='text-uppercase hidden-sm hidden-xs'>Basket</span></a>
+                        <a href="@Url.Action("Index", "ViewInvoice")" title="Tracking Order"><i class='fa fa-plus'></i> <span class='text-uppercase hidden-sm hidden-xs'>Tracking Order</span></a>
+                    </div>
+                }
+                else
+                {
+                    <div class="login">
+                        <a href="@Url.Action("Index", "Account")" title="My Account"><i class='fa fa-user'></i> <span class='text-uppercase hidden-sm hidden-xs'>My Account</span></a>
+                        <a href="@Url.Action("Logout", "Account")" title="Logout"><i class='fa fa-sign-out'></i> <span class='text-uppercase hidden-sm hidden-xs'>Logout</span></a>
+                        <a href="@Url.Action("Index", "Basket")" title="Shopping Cart"><i class='fa fa-shopping-cart'></i> <span class='text-uppercase hidden-sm hidden-xs'>Basket</span></a>
+                        <a href="@Url.Action("Index", "ViewInvoice")" title="Tracking Order"><i class='fa fa-plus'></i> <span class='text-uppercase hidden-sm hidden-xs'>Tracking Order</span></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

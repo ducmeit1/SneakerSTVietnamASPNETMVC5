@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - SneakerST Vietnam AdminCP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Boostrap-->
+    @Styles.Render("~/Content/bootstrap/css")
+    <!--Linear Icon-->
+    @Styles.Render("~/Content/AdminCP/LinearIcons")
+    <!--Main CSS-->
+    @Styles.Render("~/Content/AdminCP/css")
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-brand">
+                <h1 class="sneakerstbrand" style="position: relative; bottom: 15px;">SNEAKER<span>ST</span></h1>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-btn">
+                    <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                </div>
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="~/Template/Images/user.png" class="img-circle" alt="Avatar" /><span>Đức Mê IT</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Send Email</span></a></li>
+                                <li><a href="@Url.Action("Logout", "Home")"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END NAVBAR -->
+        @Html.Partial("_PartialLeftNavbar")
+        <!--BEGIN MAIN-->
+        @RenderBody()
+        <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <footer>
+            <div class="container-fluid">
+                <p class="copyright">&copy; 2017 SneakerST Vietnam</a>. All Rights Reserved. Themes by Theme I Need</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/admincpscripts")
+</body>
+</html>

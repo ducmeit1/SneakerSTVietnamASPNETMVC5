@@ -1,0 +1,194 @@
+﻿@model SneakerSTVietnamMVC.Models.Product
+@using SneakerSTVietnamMVC.Models.DataView
+@{
+    ViewBag.Title = "View Detail";
+    Layout = "~/Views/Layout/_LayoutMaster.cshtml";
+}
+<section id="product_profile">
+    <div class="container">
+        <h1>View Detail</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li class="breadcrumb-item">
+                @Html.ActionLink("New Arrivals", "NewArrivals", "Products")
+            </li>
+            <li class="breadcrumb-item active">Product @Html.DisplayFor(m => m.ProductName)</li>
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="main_pic">
+                    <img src="../../@Html.Raw(ViewBag.MainImage)" class="img-responsive">
+                    <div id="previous">
+                        <span class="icon"></span>
+                    </div>
+                    <div id="next">
+                        <span class="icon"></span>
+                    </div>
+                </div>
+                <div class="thumbs">
+                    @foreach (var item in Model.ImageProducts.Where(p => p.IsDisplay == true))
+                    {
+                        <img src="../../@Html.DisplayFor(m => item.ImageURL)" class="img-responsive" alt="thumbs">
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="row product_info">
+            <div class="col-md-6 col-sm-6">
+                <img src="../../@Html.DisplayFor(m => m.Category.CategoryLogo)" class="img-responsive" alt="thumbs-brand">
+                <h1>@Html.DisplayFor(m => m.SellPrice) $USD</h1>
+                <div class="text-center form-group">
+                    @if (ViewBag.Size != null)
+                    {
+                            <input type="hidden" name="id" id="pid" value="@Html.DisplayFor(m => Model.ProductID)" />
+                            @Html.DropDownList("Size", null, "Select", htmlAttributes: new { @class = "size" })
+                            <input type="submit" value="ADD TO CARD" onclick="AddToCart()" />
+                    }
+                    else
+                    {
+                        <p>This product is out stock</p>
+                    }
+                </div>
+                <hr>
+                <h3>DESCRIPTION</h3>
+                <p class="text-justify">@Html.DisplayFor(m => m.Description)</p>
+                <hr>
+                <h3>DETAIL</h3>
+                <p class="text-justify">
+                    @Html.DisplayFor(m => m.Detail)
+                </p>
+                <hr>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Size Chart <span class="caret"></span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body table-responsive">
+                                <table id="size-chart" cellpadding="0" cellspacing="0" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>US</th>
+                                            <th>UK</th>
+                                            <th>EU</th>
+                                            <th>CM</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>4</td><td>36</td><td>3.5</td><td>22</td></tr>
+                                        <tr><td>4.5</td><td>36 2/3</td><td>4</td><td>22.5</td></tr>
+                                        <tr><td>5</td><td>37 1/3</td><td>4.5</td><td>23</td></tr>
+                                        <tr><td>5.5</td><td>38</td><td>5</td><td>23.5</td></tr>
+                                        <tr><td>6</td><td>38 2/3</td><td>5.5</td><td>24</td></tr>
+                                        <tr><td>6.5</td><td>39 1/3</td><td>6</td><td>24.5</td></tr>
+                                        <tr><td>7</td><td>40</td><td>6.5</td><td>25</td></tr>
+                                        <tr><td>7.5</td><td>40 2/3</td><td>7</td><td>25.5</td></tr>
+                                        <tr><td>8</td><td>41 1/3</td><td>7.5</td><td>26</td></tr>
+                                        <tr><td>8.5</td><td>42</td><td>8</td><td>26.5</td></tr>
+                                        <tr><td>9</td><td>42 2/3</td><td>8.5</td><td>27</td></tr>
+                                        <tr><td>9.5</td><td>43 1/3</td><td>9</td><td>27.5</td></tr>
+                                        <tr><td>10</td><td>44</td><td>9.5</td><td>28</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Delivery terms</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>
+                                    We will always try to ship your order within 24 hours. Usually if you place your order before 09.00 a.m. CET we will ship it the same day. <br />
+                                    During particular releases, sales or holidays, the handling of your order may take up to two days.<br />
+                                    Vietnam
+                                    You will recieve your order within 3-5 work days after we have shipped your order.<br />
+                                    Rest of the world
+                                    You will recieve your order within 5-10 work days after we have shipped your order.<br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Returns & Payments</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                30 days full return policy (exchange or money back). PayPal, Visa and Mastercard payments accepted.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="new-arrivals" style="padding: 10px 0px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h3>RECENT SNEAKERS MAY YOU LIKE</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (ProductModelRepresentView item in ViewBag.RandomProduct)
+                    {
+                        <div class="col-lg-4 col-sm-6 new-arrivals-item">
+                            <a href="@Url.Action("ViewDetail", "Products", new { id = item.ProductID })" class="new-arrivals-link">
+                                @if (item.IsNew)
+                                {<div class="type-tag">NEW</div>}
+                                <div class="price-tag">@Html.DisplayFor(m => item.SellPrice) $USD</div>
+                                <img src="../../@Html.DisplayFor(m => item.ImageLink)" class="img-responsive" alt="" />
+                                <p>@Html.DisplayFor(m => item.ProductName)</p>
+                            </a>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <a href="@Url.Action("NewArrivals", "Products")" class="btn btn-lg btn-outline" style="position: relative; top: 30px">
+                                VIEW MORE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="alert"></div>
+<script>
+    function AddToCart() {
+        var size = document.getElementById("Size").value;
+        var id = document.getElementById("pid").value;
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText != "") {
+                    document.getElementById("alert").outerHTML = this.responseText;
+                    $("#alert").delay(2000).slideUp(200, function () {
+                        $("#alert").outerHTML = "<div id='alert'></div>";
+                    });
+                }
+            }
+        }
+
+        xhttp.open("POST", "../../Basket/AddToBasket?id=" + id + "&size=" + size, true);
+        xhttp.send();
+    }
+</script>
